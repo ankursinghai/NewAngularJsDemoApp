@@ -14,6 +14,13 @@ UAparser = require('ua-parser-js'),
 userAgentParser = new UAparser();
 var url = require('url');
 
+var speechToText = watson.speech_to_text({
+    username: '7546c61a-d819-4b30-8e14-2921777678b5',
+    password: 'IafXtQVcDI5a',
+    version: 'v1'
+});
+require('./socket')(io, speechToText);
+
 var bodyParser = require('body-parser');
 
 var rootPath = path.normalize(__dirname +  '/../');
@@ -31,7 +38,7 @@ app.get('/api/speak', events.getTTS);
 app.get('/api/sample', events.getSampleAudio);
 //app.get('/api/speechToText', events.getSpeechToText);
 
-
+app.post('/ask', events.ask);
 
 app.get('*',function (req, res) {
     res.sendfile(rootPath + '/app/index.html');

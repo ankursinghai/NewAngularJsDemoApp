@@ -121,31 +121,23 @@ module.exports.getSampleAudio = function(request, response) {
     });
 };
 
-/*module.exports.getSpeechToText = function(request, response) {
-    var filePath = path.join(__dirname, 'Us_English_Broadband_Sample_1.wav');
-    console.log(filePath);
-    var speech_to_text = watson.speech_to_text({
-        username: '7546c61a-d819-4b30-8e14-2921777678b5',
-        password: 'IafXtQVcDI5a',
-        version: 'v1'
-        });
 
-    var params = {
-        // From file
-        audio: fs.createReadStream(filePath),
-        content_type: 'audio/l16; rate=44100'
-    };
+module.exports.ask = function(req, res) {
 
-    speech_to_text.recognize(params, function(err, response) {
-        if (err)
-            console.log(err);
-        else
-            console.log(JSON.stringify(response, null, 2));
+    var query = url.parse(req.url, true).query;
+    console.log(query.questionText);
+    var text_to_speech = watson.text_to_speech({
+        username: 'e7659d7e-0341-4a77-9e9a-63a93dcac4c5',
+        password: 'B6NImn3TLGtn',
+        version: 'v1',
+        url: 'https://stream.watsonplatform.net/text-to-speech/api'
     });
 
-    // or streaming
+    var params = {
+        text: query.text,
+        voice: 'en-US_AllisonVoice', // Optional voice
+        accept: 'audio/wav'
+    };
 
-    fs.createReadStream(filePath)
-        .pipe(speech_to_text.createRecognizeStream({ content_type: 'audio/l16; rate=44100' }))
-        .pipe(response);
-};*/
+    text_to_speech.synthesize(params).pipe(res);
+};

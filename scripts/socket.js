@@ -23,6 +23,7 @@ module.exports = function(io, speechToText) {
   // Create a session on socket connection
   io.use(function(socket, next) {
     speechToText.createSession({}, function(err, session) {
+      console.log('io.use called');
       if (err) {
         next(new Error('The server could not create a session'));
       } else {
@@ -74,7 +75,7 @@ module.exports = function(io, speechToText) {
 
     socket.on('message', function(data) {
       //console.log(log(socket.id),'message:', data);
-
+      console.log('io.on called');
       if (!session.open) {
         session.open = true;
         var payload = {

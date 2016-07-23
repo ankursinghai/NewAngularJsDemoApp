@@ -1,9 +1,9 @@
 <div style="float:right">
-    <audio controls preload="auto" id="audio">
+    <audio controls preload="auto" id="audio1">
         <source id="wavsource" type="audio/wav">
     </audio>
 </div>
-<div id="result" class="row">
+<div id="result1" class="row">
     <div class="row">
         <div class="col-lg-12 col-lg-12 col-xs-12">
             <h2>Ask Questions.</h2>
@@ -11,15 +11,16 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse">
                         <ul class="navbar-text">
-                                <img id="microphoneIcon" src="images/microphone.svg" class="icon" style="margin: 0px; width: 20px; height: 20px;" ng-click="RecordSpeech()">
-                                <span class="nav-label">Record Audio</span>
+                            <img id="microphoneIcon" src="images/microphone.svg" class="icon"
+                                 style="margin: 0px; width: 20px; height: 20px;" ng-click="RecordSpeech()">
+                            <span class="nav-label">Record Audio</span>
                         </ul>
                     </nav>
                 </div>
                 <div>
                     <div class="col-lg-10 col-md-10 col-xs-9">
-                        <textarea id="textArea" spellcheck="false" style="margin: 0px; width: 803px; height: 50px;"
-                                  placeholder="Type or speak a question..."></textarea>
+                            <textarea id="textArea" spellcheck="false" style="margin: 0px; width: 803px; height: 50px;"
+                                      placeholder="Type or speak a question..."></textarea>
                     </div>
                 </div>
                 <div>
@@ -27,19 +28,37 @@
                         <button type="button" class="btn btn-block" ng-click="SpeakText()">Listen</button>
                     </div>
                     <div class="col-lg-2 col-md-2 col-xs-3 col-md-push-10 col-xs-push-9 col-lg-push-10">
-                        <button type="button" class="btn btn-block" ng-click="TextToSpeech()">Sample File</button>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 col-xs-3 ie-speak">
-                    <button id="listen" type="button" class="btn btn-block mic listen"></button>
-                    <div class="arrow-box">
-                        <p>
-                            This browser doesn't provide a method to access the microphone.
-                            Use Chrome or Firefox to speak questions.
-                        </p>
+                        <button type="button" class="btn btn-block" ng-click="TextToSpeech()">Sample File
+                        </button>
                     </div>
                 </div>
             </div>
+            <form id="qaForm" action="/ask" method="post" class="form-horizontal">
+                <fieldset>
+                    <div class="form-group row">
+                        <div class="col-lg-10 col-md-10 col-xs-9">
+                            <input id="questionText" name="questionText" placeholder="Type or speak a question..."
+                                   required="true" value="" class="form-control"/>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-xs-3 ie-speak">
+                            <button id="listen" type="button" class="btn btn-block mic listen" style="margin: 0px; width: 50px; height: 30px;" ng-click="Record()"></button>
+                            <div class="arrow-box">
+                                <p>
+                                    This browser doesn't provide a method to access the microphone.
+                                    Use Chrome or Firefox to speak questions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-2 col-md-2 col-xs-3 col-md-push-10 col-xs-push-9 col-lg-push-10">
+                            <button type="submit" class="btn btn-block">Ask</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div id="audio" class="hidden"></div>
+            <div id="result" class="row"></div>
         </div>
     </div>
     <div>
@@ -53,7 +72,8 @@
                         <div class="row"><h2 class="span6>"> {{event.name}}</h2></div>
                         <div class="row"><span class="span1>">Date:</span><span> {{event.date}}</span></div>
                         <div class="row"><span class="span1>">Time:</span><span> {{event.time}}</span></div>
-                        <div class="row"><span class="span1>">Location:</span><span> {{event.location.address}}</span>
+                        <div class="row"><span
+                                class="span1>">Location:</span><span> {{event.location.address}}</span>
                         </div>
                         <div class="row"><span class="span1>">&nbsp;</span><span>  {{event.location.city}} ,  {{event.location.province}}</span>
                         </div>
@@ -62,3 +82,5 @@
             </li>
         </ul>
     </div>
+</div>
+

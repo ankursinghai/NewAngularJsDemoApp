@@ -133,7 +133,7 @@
 
 .mic {
     background-color: #00b2ef;
-    background-image: url('/images/mic.png');
+    background-image: url('../images/mic.png');
     background-position: center;
     background-repeat: no-repeat;
     height: 32px;
@@ -147,7 +147,7 @@
 .stop {
     background-color: red;
     border-color: red;
-    background-image: url('/images/stop.png');
+    background-image: url('../images/stop.png');
     background-position: center;
     background-repeat: no-repeat;
     height: 32px;
@@ -168,7 +168,7 @@
 }
 
 .play {
-    background-image: url('/images/play.png');
+    background-image: url('../images/play.png');
     background-position: center;
     background-repeat: no-repeat;
     height: 32px;
@@ -194,13 +194,13 @@
 
 .play.playing {
     background-color: red;
-    background-image: url('/images/stop.png');
+    background-image: url('../images/stop.png');
     border-color: red;
 }
 
 .play.playing:hover {
     background-color: #DD0000;
-    background-image: url('/images/stop.png');
+    background-image: url('../images/stop.png');
 }
 
 .answer-text {
